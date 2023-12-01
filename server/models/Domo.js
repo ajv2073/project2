@@ -13,13 +13,13 @@ const DomoSchema = new mongoose.Schema({
   age: {
     type: Number,
     min: 0,
-    required: true,
+    required: false,
   },
 
   level: {
     type: Number,
     min: 1,
-    required: true,
+    required: false,
   },
 
   owner: {

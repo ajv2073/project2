@@ -1,11 +1,11 @@
 {
-  "name": "domomaker",
+  "name": "project2",
   "version": "1.0.0",
   "engines": {
     "node": "20.7.0",
     "npm": "10.1.0"
   },
-  "description": "A Simple Login Example using Node.js, Mongo and Redis",
+  "description": "A very cool project 2",
   "main": "./server/app.js",
   "scripts": {
     "webpack": "webpack",

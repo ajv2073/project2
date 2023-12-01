@@ -8,16 +8,16 @@ const handleDomo = (e) => {
     helper.hideError();
 
     const name = e.target.querySelector('#domoName').value;
-    const age = e.target.querySelector('#domoAge').value;
-    const level = e.target.querySelector('#domoLevel').value;
+    // const age = e.target.querySelector('#domoAge').value;
+    // const level = e.target.querySelector('#domoLevel').value;
 
-    if (!name || !age || !level) {
-        helper.handleError('All fields are required!');
-        return false;
-    }
+    // if (!name || !age || !level) {
+    //     helper.handleError('All fields are required!');
+    //     return false;
+    // }
 
-    helper.sendPost(e.target.action, {name, age, level}, loadDomosFromServer);
-
+    // helper.sendPost(e.target.action, {name, age, level}, loadDomosFromServer);
+    helper.sendPost(e.target.action, {name}, loadDomosFromServer);
     return false;
 }
 
@@ -30,12 +30,14 @@ const DomoForm = (props) => {
             method="POST"
             className="domoForm"
         >
-            <label htmlFor="name">Name: </label>
-            <input id="domoName" type="text" name="name" placeholder="Domo Name" />
-            <label htmlFor="age">Age: </label>
+            <label htmlFor="name">Make a Tweet: </label>
+            {/* <input id="domoName" type="text" name="name" placeholder="Domo Name" /> */}
+            <textarea id="domoName" type="text" name="name" placeholder="Domo Tweet" />
+            {/* <label htmlFor="age">Age: </label>
             <input id="domoAge" type="number" min="0" name="age" />
             <label htmlFor="level">Level: </label>
-            <input id="domoLevel" type="number" min="1" name="level" />
+            <input id="domoLevel" type="number" min="1" name="level" /> */}
+            
             <input className="makeDomoSubmit" type="submit" value="Make Domo!" />
         </form>
     );
@@ -54,9 +56,10 @@ const DomoList = (props) => {
         return (
             <div key={domo._id} className="domo">
                 <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace" />
-                <h3 className="domoName"> Name: {domo.name} </h3>
-                <h3 className="domoAge"> Age: {domo.age} </h3>
-                <h3 className="domoLevel"> Level: {domo.level} </h3>
+                <h3 className="domoName"> {domo.name} </h3>
+                <h3 className="domoTime"> {domo.createdDate} </h3>
+                {/* <h3 className="domoAge"> Age: {domo.age} </h3>
+                <h3 className="domoLevel"> Level: {domo.level} </h3> */}
             </div>
         );
     });
