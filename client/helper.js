@@ -28,6 +28,8 @@ const sendPost = async (url, data, handler) => {
     }
   };
 
+
+  //These two functions help with the date created variable of the Entry
 const returnDay = (number) => {
   const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
   return days[number];

@@ -8,10 +8,6 @@ const makeEntry = async (req, res) => {
   }
 
   const entryData = {
-    // name: req.body.name,
-    // age: req.body.age,
-    // level: req.body.level,
-    // owner: req.session.account._id,
     feeling: req.body.feeling,
     summary: req.body.summary,
     manage: req.body.manage,
@@ -47,6 +43,7 @@ const getEntrys = async (req, res) => {
     const query = { owner: req.session.account._id };
     const docs = await Entry.find(query).select('feeling summary manage future date').lean().exec();
 
+    //I get the reverse order of the entries so the most recent one appears first
     const reverseOrder = await docs.reverse();
 
     return res.json({ entrys: reverseOrder });

@@ -6,15 +6,6 @@ const handleEntry = (e) => {
     e.preventDefault();
     helper.hideError();
 
-    // const name = e.target.querySelector('#entryName').value;
-    // const age = e.target.querySelector('#entryAge').value;
-    // const level = e.target.querySelector('#entryLevel').value;
-
-    // if (!name || !age || !level) {
-    //     helper.handleError('All fields are required!');
-    //     return false;
-    // }
-
     const feeling = e.target.querySelector('#entryFeeling').value;
     const summary = e.target.querySelector('#entrySummary').value;
     const manage = e.target.querySelector('#entryManage').value;
@@ -33,6 +24,7 @@ const handleEntry = (e) => {
     return false;
 }
 
+//This is the form you fill out to make more entries
 const EntryForm = (props) => {
     return (
         <form id="entryForm"
@@ -87,6 +79,7 @@ const EntryForm = (props) => {
     );
 }
 
+//This returns a list of all entries
 const EntryList = (props) => {
     if (props.entrys.length === 0) {
         return (

@@ -38,9 +38,6 @@ const EntrySchema = new mongoose.Schema({
 });
 
 EntrySchema.statics.toAPI = (doc) => ({
-  // name: doc.name,
-  // age: doc.age,
-  // level: doc.level,
   summary: doc.summary,
   feeling: doc.feeling,
   manage: doc.feeling,

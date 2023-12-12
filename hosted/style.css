@@ -21,7 +21,7 @@ body {
 nav {
     width: 100%;
     height: 50px;
-    background-color: #55acee;
+    background-color: purple;
 }
 
 nav:nth-child(1) {
@@ -39,22 +39,15 @@ nav:nth-child(1) {
 
 .navlink a, .navlink a:link, .navlink a:visited, .navlink a:hover, .navlink a:active {
     color: white;
-    text-decoration: none;
     padding: 5px;
     border-radius: 4px;
-    background-color: #55acee;
-    transition: background-color 0.4s ease;
+    background-color: lightpink;
 }
 
 .navlink a:hover {
-    transition: background-color 0.8s ease;
-    background-color: #66bdff;
+    background-color: pink;
 }
 
-video {
-    display: block;
-    margin: 0 auto; 
-}
 
 .entryForm {
     border: 4px solid #338acc;
@@ -98,23 +91,22 @@ textarea {
     border-color: lightpink;
 }
 
-.makeEntrySubmit {
-    transition: background-color 0.4s ease;
-    display: inline;
-    width: 90px;
-    background-color: #55acee;
-    border-radius: 2px;
-    color: white;
-    text-decoration: none;
+select {
+    background-color: lightpink;
 }
 
-.makeEntrySubmit:link, .makeEntrySubmit:visited, .makeEntrySubmit:hover, .makeEntrySubmit:active {
-    color: white;
+select:hover {
+    background-color:#AA336A;
+}
+
+.makeEntrySubmit {
+    background-color: #FAA0A0;
+    border-radius: 5px;
+    border-color: #770737;
 }
 
 .makeEntrySubmit:hover {
-    transition: background-color 0.4s ease;
-    background-color: #338acc;
+    background-color: #AA336A;
 }
 
 .mainForm {
@@ -138,18 +130,6 @@ textarea {
 }
 
 .formSubmit {
-    /* transition: background-color 0.4s ease;
-    display: block;
-    text-align: center;
-    margin: 0 auto;
-    margin-top: 14px;
-    font-size: 1.2em;
-    width: 100px;
-    background-color: red;
-    border-radius: 2px;
-    border-color: #66acee;
-    padding: 3px 0px;
-    color: white; */
     display: block;
     background-color: #FAA0A0;
     border-radius: 5px;
@@ -171,15 +151,12 @@ textarea {
 
 #user, #pass, #pass2 {
     text-align: center;
-    font-size: 1.1em;
-    width: 180px;
+    font-size: 2.1em;
+    width: 380px;
     border-radius: 6px;
+    background-color: lightblue;
 }
 
-#user:focus, #pass:focus, #pass2:focus {
-    outline: none;
-    box-shadow: 0px 0px 1px 1px #55acee;
-}
 
 .hidden {
     display: none;
@@ -228,7 +205,6 @@ textarea {
 
 #entrys {
     min-width: 400px;
-    border: 2px solid #55acee;
     border-radius: 4px;
     margin: 0 auto;
     margin-top: 100px;
@@ -257,31 +233,6 @@ h3.emptyEntry {
     margin-top: 18px;
 }
 
-/* h3.entryName {
-    float:left;
-    width: 200px;
-    font-weight: bold;
-    padding-left: 65px;
-    font-size: 1.5em;
-}
-
-h3.entryAge {
-    float:right;
-    text-align: left;
-    width: 100px;
-    font-weight: bold;
-    padding-right: 40px;
-    font-size: 1.5em;
-}
-
-h3.entryLevel {
-    float:right;
-    text-align: left;
-    width: 100px;
-    font-weight: bold;
-    padding-right: 40px;
-    font-size: 1.5em;
-} */
 
 .entry:first-child {
     margin-top: 10px;
@@ -291,17 +242,10 @@ h3.entryLevel {
     margin-bottom:10px;
 }
 
-#scottText {
-    text-align: center;
-}
-
-#scottText p {
-    font-size: 40px;
-    color: blue;
-
-}
-
 #top {
-    background-color: #04AA6D;
+    background-color: lightblue;
     text-align: center;
+    border-radius: 5px;
+    width: 80%;
+    margin: 0 auto;
 }
