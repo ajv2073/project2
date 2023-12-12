@@ -1,6 +1,6 @@
 const handleError = (message) => {
     document.getElementById('errorMessage').textContent = message;
-    document.getElementById('domoMessage').classList.remove('hidden');
+    document.getElementById('entryMessage').classList.remove('hidden');
   };
 
 const sendPost = async (url, data, handler) => {
@@ -13,7 +13,7 @@ const sendPost = async (url, data, handler) => {
     });
   
     const result = await response.json();
-    document.getElementById('domoMessage').classList.add('hidden');
+    document.getElementById('entryMessage').classList.add('hidden');
   
     if(result.redirect) {
       window.location = result.redirect;
@@ -28,12 +28,24 @@ const sendPost = async (url, data, handler) => {
     }
   };
 
+const returnDay = (number) => {
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  return days[number];
+}
+
+const returnMonth = (number) => {
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  return months[number];
+}
+
 const hideError = () => {
-    document.getElementById('domoMessage').classList.add('hidden');
+    document.getElementById('entryMessage').classList.add('hidden');
   };
 
 module.exports = {
     handleError,
     sendPost,
     hideError,
+    returnDay,
+    returnMonth,
 };

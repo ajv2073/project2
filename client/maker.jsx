@@ -1,97 +1,145 @@
 const helper = require('./helper.js');
 const React = require('react');
 const ReactDOM = require('react-dom');
-// const { addListener } = require('../server/models/Domo');
 
-const handleDomo = (e) => {
+const handleEntry = (e) => {
     e.preventDefault();
     helper.hideError();
 
-    const name = e.target.querySelector('#domoName').value;
-    // const age = e.target.querySelector('#domoAge').value;
-    // const level = e.target.querySelector('#domoLevel').value;
+    // const name = e.target.querySelector('#entryName').value;
+    // const age = e.target.querySelector('#entryAge').value;
+    // const level = e.target.querySelector('#entryLevel').value;
 
     // if (!name || !age || !level) {
     //     helper.handleError('All fields are required!');
     //     return false;
     // }
 
-    // helper.sendPost(e.target.action, {name, age, level}, loadDomosFromServer);
-    helper.sendPost(e.target.action, {name}, loadDomosFromServer);
+    const feeling = e.target.querySelector('#entryFeeling').value;
+    const summary = e.target.querySelector('#entrySummary').value;
+    const manage = e.target.querySelector('#entryManage').value;
+    const future = e.target.querySelector('#entryFuture').value;
+
+    var now = new Date();
+    const date = `${helper.returnDay(now.getDay())}, ${helper.returnMonth(now.getMonth())} ${now.getDate()}, ${now.getFullYear()}`;
+
+
+    if (!feeling || !summary || !manage || !future) {
+        helper.handleError('All fields are required!');
+        return false;
+    }
+    // helper.sendEntry(e.target.action, {name, age, level}, loadEntrysFromServer);
+    helper.sendPost(e.target.action, {feeling, summary, manage, future, date}, loadEntrysFromServer);
     return false;
 }
 
-const DomoForm = (props) => {
+const EntryForm = (props) => {
     return (
-        <form id="domoForm"
-            onSubmit={handleDomo}
-            name="domoForm"
+        <form id="entryForm"
+            onSubmit={handleEntry}
+            name="entryForm"
             action="/maker"
             method="POST"
-            className="domoForm"
+            className="entryForm"
         >
-            <label htmlFor="name">Make a Tweet: </label>
-            {/* <input id="domoName" type="text" name="name" placeholder="Domo Name" /> */}
-            <textarea id="domoName" type="text" name="name" placeholder="Domo Tweet" />
-            {/* <label htmlFor="age">Age: </label>
-            <input id="domoAge" type="number" min="0" name="age" />
-            <label htmlFor="level">Level: </label>
-            <input id="domoLevel" type="number" min="1" name="level" /> */}
+            <div class="left">
+                <div class="dropdownQuestion">
+                    <label htmlFor="feeling">How are you on a scale of 1 to 10: </label> <br></br>
+                    <select name="feeling" id="entryFeeling">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+
+                <div class="paragraphQuestion">
+                    <label htmlFor="summary">What did you do today? </label> <br></br>
+                    <textarea id="entrySummary" type="text" name="summary" placeholder="Write down your activities" />
+                </div>
+
+            </div>
             
-            <input className="makeDomoSubmit" type="submit" value="Make Domo!" />
+            <div class="right">
+                <div class="paragraphQuestion">
+                    <label htmlFor="manage">How did you manage your health?</label> <br></br>
+                    <textarea id="entryManage" type="text" name="manage" placeholder="Write down how you managed your health" />
+                </div>
+
+
+                <div class="paragraphQuestion">
+                    <label htmlFor="future">What are your plans for tomorrow?</label> <br></br>
+                    <textarea id="entryFuture" type="text" name="future" placeholder="Write down your future plans" /> 
+                </div>
+
+            </div>
+
+
+
+            <input className="makeEntrySubmit" type="submit" value="Submit Entry!" />
         </form>
     );
 }
 
-const DomoList = (props) => {
-    if (props.domos.length === 0) {
+const EntryList = (props) => {
+    if (props.entrys.length === 0) {
         return (
-            <div className="domoList">
-                <h3 className="emptyDomo">No Domos Yet!</h3>
+            <div className="entryList">
+                <h3 className="emptyEntry">No Entrys Yet!</h3>
             </div>
         );
     }
 
-    const domoNodes = props.domos.map(domo => {
+    const entryNodes = props.entrys.map(entry => {
         return (
-            <div key={domo._id} className="domo">
-                <img src="/assets/img/domoface.jpeg" alt="domo face" className="domoFace" />
-                <h3 className="domoName"> {domo.name} </h3>
-                <h3 className="domoTime"> {domo.createdDate} </h3>
-                {/* <h3 className="domoAge"> Age: {domo.age} </h3>
-                <h3 className="domoLevel"> Level: {domo.level} </h3> */}
+            <div key={entry._id} className="entry">
+                <h1 className="entryDate"> Entry on {entry.date} </h1>
+                <h3>This is what you said about today: </h3>
+                <p className="entrySummary"> {entry.summary} </p>
+                <h3 className="entryFeeling"> You rated this day a {entry.feeling} out of 10 </h3>
+                <h3>When asked how you managed your health, you said: </h3>
+                <p className="entryManage"> {entry.manage} </p>
+                <h3>When discussing the future, you said: </h3>
+                <p className="entryFuture"> {entry.future} </p>
+                
             </div>
         );
     });
 
     return (
-        <div className="domoList">
-            {domoNodes}
+        <div className="entryList">
+            {entryNodes}
         </div>
     );
 }
 
-const loadDomosFromServer = async () => {
-    const response = await fetch('/getDomos');
+const loadEntrysFromServer = async () => {
+    const response = await fetch('/getEntrys');
     const data = await response.json();
     ReactDOM.render(
-        <DomoList domos={data.domos} />,
-        document.getElementById('domos')
+        <EntryList entrys={data.entrys} />,
+        document.getElementById('entrys')
     );
 }
 
 const init = () => {
     ReactDOM.render(
-        <DomoForm />,
-        document.getElementById('makeDomo')
+        <EntryForm />,
+        document.getElementById('makeEntry')
     );
 
     ReactDOM.render(
-        <DomoList domos={[]} />,
-        document.getElementById('domos')
+        <EntryList entrys={[]} />,
+        document.getElementById('entrys')
     );
 
-    loadDomosFromServer();
+    loadEntrysFromServer();
 }
 
 window.onload = init;

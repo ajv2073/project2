@@ -62,6 +62,22 @@ const signup = async (req, res) => {
   }
 };
 
+// const changePassword = async (req, res) => {
+//   console.log("trying to change password");
+//   const newPass = `${req.body.newPass}`;
+//   const newPass2 = `${req.body.newPass2}`;
+
+//   if (newPass !== newPass2) {
+//     return res.status(400).json({ error: 'Passwords do not match stupid!' });
+//   }
+
+//   try{
+//     const hash = await Account.generateHash(newPass);
+//   } catch(err) {
+
+//   }
+// }
+
 module.exports = {
   loginPage,
   // signupPage,
