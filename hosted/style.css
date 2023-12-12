@@ -38,9 +38,10 @@ nav:nth-child(1) {
 }
 
 .navlink a, .navlink a:link, .navlink a:visited, .navlink a:hover, .navlink a:active {
-    color: white;
-    padding: 5px;
-    border-radius: 4px;
+    color: purple;
+    padding: 3px;
+    border-radius: 15px;
+    border: 3px solid #338acc;
     background-color: lightpink;
 }
 
@@ -113,7 +114,6 @@ select:hover {
     height: 300px;
     width: 350px;
     margin: 0 auto;
-    padding-top: 350px;
     font-size: 1.2em;
 }
 
