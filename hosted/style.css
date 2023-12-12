@@ -179,12 +179,6 @@ select:hover {
     left: 20px;
 }
 
-#speech {
-    height: 120px;
-    width: 250px;
-    z-index:300;
-}
-
 #errorMessage {
     font-size: 1.2em;
     font-weight: bold;
